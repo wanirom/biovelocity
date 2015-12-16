@@ -2,13 +2,71 @@
 <html>
 <head>
   <title>Biovelocity</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="user-desc">
+    <div class="container">
+      <ul>
+        <li><a href="checkout.html">Checkout</a></li>
+        <li><i class="user"></i><a href="account.html">My Account</a></li>
+        <li><i class="cart"></i><a href="#">Cart (3)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html"><img src="assets/logo.jpg" alt=""/></a>
+        </div>
+        <div class="top-menu">
+          <span class="menu"> </span>
+          <ul class="cl-effect-15">
+            <li><a class="active" href="index.html">HOME</a></li>
+            <li><a href="404.html" data-hover="NEWS">NEWS</a></li>
+            <li><a href="products.html" data-hover="PRODUCTS">PRODUCTS</a></li>
+            <li><a href="404.html" data-hover="FEATURES">FEATURES</a></li>
+            <li><a href="contact.html" data-hover="CONTACT">CONTACT</a></li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="slider">
+      <div id="ipresenter">
+        <div id="intro" class="step" data-x="0" data-y="0" data-thumbnail="banner1">
+          <img src="assets/banner1.jpg" />
+        </div>
+        <div id="capture" class="step" data-x="1100" data-y="1200" data-scale="1.8" data-rotate="180" data-thumbnail="banner2">
+            <img src="assets/banner2.jpg" />
+        </div>
+      </div>
+    </div>
+</div>
+   
+    <%= yield %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#ipresenter').iPresenter({
+            timerPadding: -1,
+            controlNav: true,
+            controlNavThumbs: true,
+            controlNavNextPrev: false
+        });
+        
+        $(".scroll").click(function(event){		
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+        });
+        
+        $("span.menu").click(function(){
+          $(".top-menu ul").slideToggle("slow" , function(){
+          });
+        });
+      });
+    </script>
 </body>
 </html>
